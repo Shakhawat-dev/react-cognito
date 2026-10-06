@@ -1,0 +1,113 @@
+.app {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.card h1 {
+  font-size: 32px;
+  letter-spacing: -0.6px;
+  margin: 0 0 8px;
+}
+
+.card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.card input {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.card input:focus {
+  outline: 2px solid var(--accent-border);
+  border-color: var(--accent);
+}
+
+.card small {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.card button {
+  font: inherit;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.card button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.card button.link {
+  background: none;
+  color: var(--accent);
+  padding: 0;
+}
+
+.error {
+  color: #d92d20;
+  font-size: 15px;
+}
+
+.info {
+  color: var(--accent);
+  font-size: 15px;
+}
+
+.alt {
+  font-size: 15px;
+  text-align: center;
+}
+
+.alt a {
+  color: var(--accent);
+}
+
+.card dl {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.card dt {
+  font-size: 13px;
+}
+
+.card dd {
+  margin: 0 0 8px;
+  color: var(--text-h);
+  word-break: break-all;
+}
+
+.status {
+  text-align: center;
+}
