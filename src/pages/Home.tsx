@@ -4,11 +4,15 @@ import { useAuth } from '../auth/useAuth.ts'
 
 export default function Home() {
   const { user, logout } = useAuth()
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [expiresAt, setExpiresAt] = useState<Date | null>(null)
 
   useEffect(() => {
-    fetchUserAttributes().then((attrs) => setEmail(attrs.email ?? ''))
+    fetchUserAttributes().then((attrs) => {
+      setName(attrs.name ?? '')
+      setEmail(attrs.email ?? '')
+    })
     fetchAuthSession().then(({ tokens }) => {
       const exp = tokens?.idToken?.payload.exp
       if (exp) setExpiresAt(new Date(exp * 1000))
@@ -19,6 +23,8 @@ export default function Home() {
     <div className="card">
       <h1>Welcome</h1>
       <dl>
+        <dt>Name</dt>
+        <dd>{name || '…'}</dd>
         <dt>Email</dt>
         <dd>{email || '…'}</dd>
         <dt>User ID (sub)</dt>

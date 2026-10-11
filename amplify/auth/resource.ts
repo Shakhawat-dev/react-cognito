@@ -11,4 +11,7 @@ export const auth = defineAuth({
       verificationEmailBody: (createCode: () => string) => `Your verification code is ${createCode()}`,
     },
   },
+  userAttributes: {
+    fullname: { required: true, mutable: true },
+  },
 });

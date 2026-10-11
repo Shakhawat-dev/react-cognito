@@ -5,6 +5,7 @@ import { errorMessage } from '../auth/errors.ts'
 
 export default function SignUp() {
   const navigate = useNavigate()
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
@@ -13,6 +14,10 @@ export default function SignUp() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
+    if (!name.trim()) {
+      setError('Please enter your name.')
+      return
+    }
     if (password !== confirm) {
       setError('Passwords do not match.')
       return
@@ -23,7 +28,7 @@ export default function SignUp() {
       const { nextStep } = await signUp({
         username: email,
         password,
-        options: { userAttributes: { email } },
+        options: { userAttributes: { email, name: name.trim() } },
       })
       if (nextStep.signUpStep === 'CONFIRM_SIGN_UP') {
         navigate(`/confirm?email=${encodeURIComponent(email)}`)
@@ -40,6 +45,10 @@ export default function SignUp() {
   return (
     <form className="card" onSubmit={handleSubmit}>
       <h1>Create account</h1>
+      <label>
+        Name
+        <input type="text" autoComplete="name" required value={name} onChange={(e) => setName(e.target.value)} />
+      </label>
       <label>
         Email
         <input type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
