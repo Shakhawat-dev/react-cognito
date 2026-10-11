@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "sandbox": "NODE_OPTIONS=--no-experimental-webstorage ampx sandbox"
+    "sandbox": "node --no-experimental-webstorage node_modules/@aws-amplify/backend-cli/lib/ampx.js sandbox"
   },
   "dependencies": {
     "aws-amplify": "^6.22.1",

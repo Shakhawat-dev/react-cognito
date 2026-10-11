@@ -13,7 +13,7 @@ export default function SignIn() {
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  const confirmed = (location.state as { confirmed?: boolean } | null)?.confirmed
+  const { confirmed, passwordReset } = (location.state as { confirmed?: boolean; passwordReset?: boolean } | null) ?? {}
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -40,6 +40,7 @@ export default function SignIn() {
     <form className="card" onSubmit={handleSubmit}>
       <h1>Sign in</h1>
       {confirmed && <p className="info">Email verified. You can sign in now.</p>}
+      {passwordReset && <p className="info">Password reset. Sign in with your new password.</p>}
       <label>
         Email
         <input type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -50,6 +51,7 @@ export default function SignIn() {
       </label>
       {error && <p className="error" role="alert">{error}</p>}
       <button type="submit" disabled={submitting}>{submitting ? 'Signing in…' : 'Sign in'}</button>
+      <p className="alt"><Link to="/forgot-password">Forgot password?</Link></p>
       <p className="alt">No account? <Link to="/signup">Create one</Link></p>
     </form>
   )

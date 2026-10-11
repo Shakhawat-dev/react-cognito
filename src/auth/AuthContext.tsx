@@ -23,7 +23,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    refresh()
+    getCurrentUser()
+      .then(setUser, () => setUser(null))
+      .finally(() => setLoading(false))
     return Hub.listen('auth', ({ payload }) => {
       switch (payload.event) {
         case 'signedIn':
