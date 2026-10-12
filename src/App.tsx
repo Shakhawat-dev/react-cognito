@@ -3,10 +3,7 @@ import { ProtectedRoute, PublicOnlyRoute } from './auth/ProtectedRoute.tsx'
 import { ADMIN_GROUP, useAuth } from './auth/useAuth.ts'
 import NavBar from './components/NavBar.tsx'
 import SignIn from './pages/SignIn.tsx'
-import SignUp from './pages/SignUp.tsx'
-import ConfirmSignUp from './pages/ConfirmSignUp.tsx'
-import ForgotPassword from './pages/ForgotPassword.tsx'
-import ResetPassword from './pages/ResetPassword.tsx'
+import AuthCallback from './pages/AuthCallback.tsx'
 import Home from './pages/Home.tsx'
 import AccountLayout from './pages/account/AccountLayout.tsx'
 import ProfileSettings from './pages/account/ProfileSettings.tsx'
@@ -24,11 +21,8 @@ function App() {
         <Routes>
           <Route element={<PublicOnlyRoute />}>
             <Route path="/login" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
           </Route>
-          <Route path="/confirm" element={<ConfirmSignUp />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />
             <Route path="/account" element={<AccountLayout />}>
