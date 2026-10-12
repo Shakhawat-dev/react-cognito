@@ -3,7 +3,7 @@ import { fetchAuthSession, fetchUserAttributes } from 'aws-amplify/auth'
 import { useAuth } from '../auth/useAuth.ts'
 
 export default function Home() {
-  const { user, logout } = useAuth()
+  const { user, groups } = useAuth()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [expiresAt, setExpiresAt] = useState<Date | null>(null)
@@ -27,12 +27,13 @@ export default function Home() {
         <dd>{name || '…'}</dd>
         <dt>Email</dt>
         <dd>{email || '…'}</dd>
+        <dt>Groups</dt>
+        <dd>{groups.length ? groups.join(', ') : 'None'}</dd>
         <dt>User ID (sub)</dt>
         <dd><code>{user?.userId}</code></dd>
         <dt>ID token expires</dt>
         <dd>{expiresAt ? expiresAt.toLocaleString() : '…'}</dd>
       </dl>
-      <button type="button" onClick={logout}>Sign out</button>
     </div>
   )
 }
